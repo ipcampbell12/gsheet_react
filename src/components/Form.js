@@ -8,20 +8,22 @@ function Form(props) {
     const [startPage, setStartPage] = useState('');
     const [endPage, setEndPage] = useState('');
     const [summary, setSummary] = useState('')
-    const [finished, setFinished] = useState(false)
+    // const [finished, setFinished] = useState(false)
 
 
     const submitEntry = (e) => {
         e.preventDefault();
 
-        props.onAdd({ title, author, startPage, endPage, summary, finished })
+        const pages = parseInt(endPage) - parseInt(startPage)
+        console.log('Pages: ', pages)
+        props.onAdd({ title, author, startPage, endPage, summary })
 
         setTitle('')
         setAuthor('')
         setStartPage('')
         setEndPage('')
         setSummary('')
-        setFinished(false)
+        // setFinished(false)
     }
 
     return (
@@ -46,10 +48,7 @@ function Form(props) {
                 <labe>Summary</labe>
                 <input type="textarea" placeholder="Title" value={summary} onChange={(e) => setSummary(e.target.value)} />
             </div>
-            <div id='Finished'>
-                <labe>Finished</labe>
-                <input type="checkbox" placeholder="Title" value={finished} onChange={(e) => setFinished(e.target.value)} />
-            </div>
+
         </form>
     );
 }
