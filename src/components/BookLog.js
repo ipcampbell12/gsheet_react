@@ -1,31 +1,27 @@
-import { useState } from 'react';
+
 import BookEntry from './BookEntry';
 
 function BookLog(props) {
 
-    const [books, setBooks] = useState([])
-
-    const addBook = (book) => {
-        const id = books.length + 1
-        const newBook = { ...id, book }
-        setBooks([...books, newBook])
-    }
+    //console.log('Books in booklog: ', props.books)
 
     return (
         <div>
             <h3>Book Log</h3>
             <table>
                 <thead>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Pages</th>
-                    <th>Summary</th>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                        <th>Summary</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {
-                        books.map((book) => (
-                            <BookEntry book={book} addBook={addBook} />
+                        props.books.map((book) => (
+                            <BookEntry book={book} />
                         ))
                     }
                 </tbody>
